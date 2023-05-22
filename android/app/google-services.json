@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "722909826082",
+    "project_id": "pettie-4b152",
+    "storage_bucket": "pettie-4b152.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722909826082:android:792c104b615de53fec4e7b",
+        "android_client_info": {
+          "package_name": "com.example.pettie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWghiYSi1yeSPk55DoqNhMHeLKQk0Ua3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722909826082:android:551ddca4d236a682ec4e7b",
+        "android_client_info": {
+          "package_name": "com.example.pettie_petstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWghiYSi1yeSPk55DoqNhMHeLKQk0Ua3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722909826082:android:bfe4fe133721b8a8ec4e7b",
+        "android_client_info": {
+          "package_name": "com.pettie.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWghiYSi1yeSPk55DoqNhMHeLKQk0Ua3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722909826082:android:640e772a95e7a945ec4e7b",
+        "android_client_info": {
+          "package_name": "com.pettie.pettie_petstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWghiYSi1yeSPk55DoqNhMHeLKQk0Ua3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722909826082-pohkg6tbal46m5v9jgco7vlg1tac11l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
