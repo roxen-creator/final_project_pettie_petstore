@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pettie_petstore/src/features/core/models/product/product_model.dart';
 
 
+import '../../models/cart_model/cart_model.dart';
 
 import '../widget/app_bar.dart';
 import '../widget/cart_product_card.dart';
@@ -31,9 +31,6 @@ class Cart extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              
-                
-              
               ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.white),
@@ -58,7 +55,7 @@ class Cart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      ' Add Rs.400 for Free Delivery',
+                      CartModel().freeDeliveryString,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     ElevatedButton(
@@ -76,86 +73,88 @@ class Cart extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-              height: 10,
-            ),
-            CartProductCard(
-              product: Product.products[0],
-            ),
-            CartProductCard(
-              product: Product.products[1],
-            ),
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 500,
+                  child: ListView.builder(itemBuilder: (context, index){
+                    return  CartProductCard(
+                  product: CartModel().products[index]
+                );
+                  },
+                  itemCount: CartModel().products.length),
+                ),
+               
               ],
             ),
-
-         
-          Column(children: [
-const Divider(
-              thickness: 2,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40, vertical: 10.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('SUBTOTAL',
-                          style: Theme.of(context).textTheme.displaySmall),
-                      Text('Rs.88.50',
-                          style: Theme.of(context).textTheme.displaySmall),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('DELIVERY FREE',
-                          style: Theme.of(context).textTheme.displaySmall),
-                      Text('Rs.88.50',
-                          style: Theme.of(context).textTheme.displaySmall),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Stack(
+            Column(
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 60,
-                  decoration: BoxDecoration(color: Colors.black.withAlpha(50)),
+                const Divider(
+                  thickness: 2,
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  margin: const EdgeInsets.all(5.0),
-                  decoration: const BoxDecoration(color: Colors.black),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('TOTAL',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(color: Colors.white)),
-                        Text('Rs.88.50',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(color: Colors.white)),
-                      ],
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 10.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('SUBTOTAL',
+                              style: Theme.of(context).textTheme.displaySmall),
+                          Text('Rs.${CartModel().subtotalString}',
+                              style: Theme.of(context).textTheme.displaySmall),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('DELIVERY FREE',
+                              style: Theme.of(context).textTheme.displaySmall),
+                          Text('Rs${CartModel().deliveryfeeString}',
+                              style: Theme.of(context).textTheme.displaySmall),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
+                Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      decoration:
+                          BoxDecoration(color: Colors.black.withAlpha(50)),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 50,
+                      margin: const EdgeInsets.all(5.0),
+                      decoration: const BoxDecoration(color: Colors.black),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('TOTAL',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(color: Colors.white)),
+                            Text('Rs.${CartModel().totalString}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],),
-          
-          
-            
+            ),
           ],
         ),
       ),
