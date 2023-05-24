@@ -6,6 +6,7 @@ import 'package:pettie_petstore/src/features/core/models/product/product_model.d
 
 import 'package:pettie_petstore/src/features/core/screens/widget/hero_carousel.dart';
 
+import '../../../../blocs/cart/cart_bloc.dart';
 import '../../../../blocs/wishlist/wishlist_bloc.dart';
 import '../widget/app_bar.dart';
 
@@ -47,9 +48,10 @@ class ProductScreen extends StatelessWidget {
                           .read<WishlistBloc>()
                           .add(AddProductToWishlist(product));
 
-                          // ignore: prefer_const_constructors
-                          final snackBar =  SnackBar(content: Text('Added to your Wishlist!'));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      // ignore: prefer_const_constructors
+                      const snackBar =
+                          SnackBar(content: Text('Added to your Wishlist!'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                     icon: const Icon(
                       Icons.favorite,
@@ -58,14 +60,21 @@ class ProductScreen extends StatelessWidget {
                   );
                 },
               ),
-              ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                  onPressed: () {},
-                  child: Text(
-                    'ADD TO CART',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ))
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white),
+                      onPressed: () {
+                        context.read<CartBloc>().add(AddProduct(product));
+                        Navigator.pushNamed(context, '/cart');
+                      },
+                      child: Text(
+                        'ADD TO CART',
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ));
+                },
+              )
             ],
           ),
         ),

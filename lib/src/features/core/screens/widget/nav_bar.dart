@@ -7,7 +7,7 @@ import 'package:pettie_petstore/src/features/authentication/screens/profile_scre
 
 class NavBar extends StatelessWidget {
   const NavBar({
-    super.key,
+    super.key, required String screen,
   });
 
   @override

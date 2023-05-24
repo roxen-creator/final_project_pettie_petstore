@@ -21,11 +21,13 @@ class UserRepository extends GetxController{
     colorText: Colors.green),
     
     )
+   // ignore: body_might_complete_normally_catch_error
    .catchError((error, stackTrace){
 Get.snackbar("Error", "Something went wrong. Try Again", 
 snackPosition: SnackPosition.BOTTOM,
 backgroundColor: Colors.redAccent.withOpacity(0.1),
 colorText:Colors.red);
+// ignore: avoid_print
 print(error.toString());
 
    });

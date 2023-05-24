@@ -24,7 +24,7 @@ class Wishlist extends StatelessWidget {
     return Scaffold(
       //CustomAppBar
       appBar: const MyAppBar(title: 'Wishlist'),
-      bottomNavigationBar: const NavBar(),
+      bottomNavigationBar: const NavBar(screen: routeName,),
       body: BlocBuilder<WishlistBloc, WishlistState>(builder: (context, state) {
         if (state is WishlistLoading) {
           return const Center(

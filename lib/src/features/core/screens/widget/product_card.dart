@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
+import '../../../../blocs/cart/cart_bloc.dart';
 import '../../../../blocs/wishlist/wishlist_bloc.dart';
 import '../../models/product/product_model.dart';
 
@@ -91,29 +92,48 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
-                        ),
-                      ),
+                    BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        if (state is CartLoading) {
+                          return const Center(child: CircularProgressIndicator(color: Colors.white,));
+                        }
+                        if (state is CartLoaded) {
+                          return 
+                             Expanded(
+                               child: IconButton(
+                                onPressed: () {
+                                 
+                                  context.read<CartBloc>().add(AddProduct(product)); const snackBar = SnackBar(content: Text('Added to your Cart'));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                },
+                                icon: const Icon(
+                                  Icons.add_circle,
+                                  color: Colors.white,
+                                ),
+                                                         ),
+                             );
+                          
+                        } else {
+                          return (const Text('Somethning went wrong'));
+                        }
+                      },
                     ),
                     iswishlist
                         ? Expanded(
                             child: BlocBuilder<WishlistBloc, WishlistState>(
                               builder: (context, state) {
                                 return IconButton(
-                                 onPressed: () {
-                      context
-                          .read<WishlistBloc>()
-                          .add(RemoveProductFromWishlist(product));
+                                  onPressed: () {
+                                    context.read<WishlistBloc>().add(
+                                        RemoveProductFromWishlist(product));
 
-                          // ignore: prefer_const_constructors
-                          final snackBar =  SnackBar(content: Text('Removed from your Wishlist!'));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    },
+                                    // ignore: prefer_const_constructors
+                                    final snackBar = SnackBar(
+                                        content: const Text(
+                                            'Removed from your Wishlist!'));
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  },
                                   icon: const Icon(
                                     Icons.delete,
                                     color: Colors.white,

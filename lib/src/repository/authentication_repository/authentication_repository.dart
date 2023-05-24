@@ -78,7 +78,7 @@ throw ex;
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     // ignore: empty_catches
-    } on FirebaseAuthException catch (e) {} catch (_) {}
+    } on FirebaseAuthException {} catch (_) {}
   }
 
   Future<void> logout() async => await _auth.signOut();

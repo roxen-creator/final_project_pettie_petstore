@@ -11,7 +11,9 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_typing_uninitialized_variables
     var otp;
+    // ignore: unused_local_variable
     var otpController = Get.put(OTPController());
     return Scaffold(
       body: Container(
