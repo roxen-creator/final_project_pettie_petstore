@@ -3,10 +3,10 @@ import 'package:equatable/equatable.dart';
 
 import '../product/product_model.dart';
 
-// ignore: must_be_immutable
-class CartModel extends Equatable{
+
+class Cart extends Equatable{
   final List<Product> products;
- const CartModel({this.products = const <Product>[]});
+ const Cart({this.products = const <Product>[]});
 
  @override
  

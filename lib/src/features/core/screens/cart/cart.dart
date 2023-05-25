@@ -67,7 +67,7 @@ class Cart extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                               state.cartmodel.freeDeliveryString,
+                               state.cart.freeDeliveryString,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                             ElevatedButton(
@@ -94,13 +94,13 @@ class Cart extends StatelessWidget {
                           child: ListView.builder(
                               itemBuilder: (context, index) {
                                 return CartProductCard(
-                                    product: state.cartmodel.productQuantity(state.cartmodel.products).keys.elementAt(index),
-                                    quantity:state.cartmodel.productQuantity(state.cartmodel.products).values.elementAt(index),
+                                    product: state.cart.productQuantity(state.cart.products).keys.elementAt(index),
+                                    quantity:state.cart.productQuantity(state.cart.products).values.elementAt(index),
                                   
                                     
                                     );
                               },
-                              itemCount: state.cartmodel.productQuantity(state.cartmodel.products).keys.length,
+                              itemCount: state.cart.productQuantity(state.cart.products).keys.length,
                         ),),
                       ],
                     ),

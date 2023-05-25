@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:pettie_petstore/firebase_options.dart';
 import 'package:pettie_petstore/src/blocs/cart/cart_bloc.dart';
 import 'package:pettie_petstore/src/blocs/category/category_bloc.dart';
+import 'package:pettie_petstore/src/blocs/checkout/checkout_bloc.dart';
+
 import 'package:pettie_petstore/src/blocs/product/product_bloc.dart';
 
 
 
 import 'package:pettie_petstore/src/blocs/wishlist/wishlist_bloc.dart';
-import 'package:pettie_petstore/src/features/core/screens/checkout/checkout_screen.dart';
+
 
 import 'package:pettie_petstore/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:pettie_petstore/src/repository/authentication_repository/authentication_repository.dart';
@@ -20,6 +22,7 @@ import 'package:pettie_petstore/src/routing/app_router.dart';
 
 import 'package:pettie_petstore/src/utis/theme/theme.dart';
 
+import 'src/repository/checkout_repository/checkout_repository.dart';
 import 'src/repository/product/product_repository.dart';
 
 
@@ -44,6 +47,15 @@ class MyApp extends StatelessWidget {
          BlocProvider(create:(_)=> CartBloc()..add(LoadCart(),),),
          BlocProvider(create: (_)=> CategoryBloc(categoryRepository: CategoryRepository())..add(LoadCategories())),
        BlocProvider(create: (_)=> ProductBloc(productRepository:ProductRepository())..add(LoadProducts())),
+
+
+ BlocProvider(
+              create: (context) => CheckoutBloc(
+                cartBloc: context.read<CartBloc>(),
+                
+                checkoutRepository: CheckoutRepository(),
+              ),
+            ),
       ],
       child: GetMaterialApp(
         themeMode: ThemeMode.system,
@@ -54,7 +66,7 @@ class MyApp extends StatelessWidget {
         
         home: const Dashboard(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: CheckoutScreen.routeName,
+        // initialRoute: CheckoutScreen.routeName,
       ),
     );
   }
