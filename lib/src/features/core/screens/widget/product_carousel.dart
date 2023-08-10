@@ -5,28 +5,39 @@ import 'product_card.dart';
 
 class ProductCarousel extends StatelessWidget {
   final List<Product> products;
+  final bool? isRecommendedCarousel;
+  final bool? isMostPopularCarousel;
+  final bool? isBestProduct;
+
   const ProductCarousel({
-    super.key,
+    Key? key,
     required this.products,
-  });
+    this.isRecommendedCarousel,
+    this.isMostPopularCarousel, this.isBestProduct,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: ListView.builder(
+    return Align(
+      alignment: Alignment.topLeft,
+      child: SizedBox(
+        height: 165,
+        child: ListView.builder(
           shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 10.0,
+          ),
           scrollDirection: Axis.horizontal,
           itemCount: products.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 5.0),
-              child: ProductCard(
-                product: products[index],
-              ),
+              child: ProductCard.catalog(product: products[index]),
             );
-          }),
+          },
+        ),
+      ),
     );
   }
 }

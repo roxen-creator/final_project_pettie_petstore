@@ -15,7 +15,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      title: Container(
+        title: Container(
         color: Colors.black,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical:10,),
         child: Text(
@@ -31,7 +31,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       iconTheme: const IconThemeData(color: Colors.black),
       actions: [
         IconButton(
-         onPressed: () => Get.to(() => const Wishlist()),
+         onPressed: () => Get.to(() =>  const Wishlist()),
           icon: const Icon(Icons.favorite),
         ),
       ],

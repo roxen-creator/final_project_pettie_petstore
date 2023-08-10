@@ -21,6 +21,7 @@ class OnBoardingController extends GetxController {
         bgColor: tOnBoardingPage1Color,
       ),
     ),
+
     OnboardingScreenWidget(
       model: OnBoardingModel(
         image: onBoardingS2,
@@ -30,6 +31,7 @@ class OnBoardingController extends GetxController {
         bgColor: tOnBoardingPage2Color,
       ),
     ),
+
     OnboardingScreenWidget(
       model: OnBoardingModel(
         image: onBoardingS3,
@@ -40,6 +42,7 @@ class OnBoardingController extends GetxController {
       ),
     )
   ];
+
   animateToNextSlide() {
     int nextPage = controller.currentPage + 1;
     controller.animateToPage(page: nextPage);

@@ -8,8 +8,10 @@ class SearchBar extends StatefulWidget {
   const SearchBar({super.key});
 
   @override
+ 
   // ignore: library_private_types_in_public_api
   _SearchBarState createState() => _SearchBarState();
+ 
 }
 
 class _SearchBarState extends State<SearchBar> {

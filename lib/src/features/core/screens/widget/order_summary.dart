@@ -13,6 +13,7 @@ class OrderSummary extends StatelessWidget {
         if(state is CartLoading){
           return(const Center(child: CircularProgressIndicator(),));
         }
+        
         if(state is CartLoaded){
          return Column(
           children: [
@@ -46,6 +47,7 @@ class OrderSummary extends StatelessWidget {
                 ],
               ),
             ),
+            //create  
             Stack(
               children: [
                 Container(
@@ -82,7 +84,7 @@ class OrderSummary extends StatelessWidget {
           ],
         );
         }else{
-          return const Text('SOmething went wrong');
+          return const Text('Something went wrong');
         }
         
       },

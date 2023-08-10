@@ -26,14 +26,16 @@ class NavBar extends StatelessWidget {
         child: (screen == '/product')
             ? AddToCartNavBar(product: product!)
             : (screen == '/cart')
-                ? const GoToCheckoutNavBar()
+                ?  const GoToCheckoutNavBar()
                 : (screen == '/checkout')
-                    ? const OrderNowNavBar()
-                    : const HomeNavBar(),
+                    ?  const OrderNowNavBar()
+                    :  const HomeNavBar(),
       ),
     );
   }
 }
+
+
 
 class HomeNavBar extends StatelessWidget {
   const HomeNavBar({
@@ -83,8 +85,12 @@ class AddToCartNavBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IconButton(
+
+          
           icon: const Icon(Icons.share, color: Colors.white),
-          onPressed: () {},
+          onPressed: () {
+
+          },
         ),
         BlocBuilder<WishlistBloc, WishlistState>(
           builder: (context, state) {
@@ -188,6 +194,7 @@ class OrderNowNavBar extends StatelessWidget {
               ElevatedButton(
                   onPressed: () {
                     context.read<CheckoutBloc>().add(ConfirmCheckout(checkout: state.checkout));
+                 Navigator.pushNamed(context, 'order-confirmation');
                   },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.white),

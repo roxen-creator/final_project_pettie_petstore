@@ -69,7 +69,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'pettie-4b152.appspot.com',
     iosClientId: '722909826082-q6trf9ibaut77foqqp9p48lilgg91mli.apps.googleusercontent.com',
     iosBundleId: 'com.example.pettiePetstore',
-  );
+  ); 
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyB6GiJUi4MKP-1kHJPtHKqeId70bDk296Y',
