@@ -26,16 +26,14 @@ class NavBar extends StatelessWidget {
         child: (screen == '/product')
             ? AddToCartNavBar(product: product!)
             : (screen == '/cart')
-                ?  const GoToCheckoutNavBar()
+                ? const GoToCheckoutNavBar()
                 : (screen == '/checkout')
-                    ?  const OrderNowNavBar()
-                    :  const HomeNavBar(),
+                    ? const OrderNowNavBar()
+                    : const HomeNavBar(),
       ),
     );
   }
 }
-
-
 
 class HomeNavBar extends StatelessWidget {
   const HomeNavBar({
@@ -51,7 +49,7 @@ class HomeNavBar extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushNamed(context, '/');
+            Navigator.popAndPushNamed(context, '/');
           },
         ),
         IconButton(
@@ -85,12 +83,8 @@ class AddToCartNavBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IconButton(
-
-          
           icon: const Icon(Icons.share, color: Colors.white),
-          onPressed: () {
-
-          },
+          onPressed: () {},
         ),
         BlocBuilder<WishlistBloc, WishlistState>(
           builder: (context, state) {
@@ -182,31 +176,33 @@ class OrderNowNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CheckoutBloc, CheckoutState>(
       builder: (context, state) {
-        if(state is CheckoutLoading){return
-        const Center(child: CircularProgressIndicator(),);}
-
-
-        if(state is CheckoutLoaded){
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    context.read<CheckoutBloc>().add(ConfirmCheckout(checkout: state.checkout));
-                 Navigator.pushNamed(context, 'order-confirmation');
-                  },
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                  child: Text('ORDER NOW',
-                      style: Theme.of(context).textTheme.displaySmall)),
-            ]);
+        if (state is CheckoutLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
-        else{return const Text('Something went wrong');}
-        
+
+        if (state is CheckoutLoaded) {
+          return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      context
+                          .read<CheckoutBloc>()
+                          .add(ConfirmCheckout(checkout: state.checkout));
+                      Navigator.pushNamed(context, '/order-confirmation');
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    child: Text('ORDER NOW',
+                        style: Theme.of(context).textTheme.displaySmall)),
+              ]);
+        } else {
+          return const Text('Something went wrong');
+        }
       },
     );
   }
 }
-   
-

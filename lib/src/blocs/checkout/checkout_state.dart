@@ -1,7 +1,5 @@
 part of 'checkout_bloc.dart';
 
-
-
 abstract class CheckoutState extends Equatable {
   const CheckoutState();
 
@@ -24,7 +22,6 @@ class CheckoutLoaded extends CheckoutState {
   final String? total;
   final Checkout checkout;
 
-
   CheckoutLoaded({
     this.fullName,
     this.email,
@@ -36,7 +33,6 @@ class CheckoutLoaded extends CheckoutState {
     this.subtotal,
     this.deliveryFee,
     this.total,
-    
   }) : checkout = Checkout(
           fullName: fullName,
           email: email,
@@ -63,6 +59,5 @@ class CheckoutLoaded extends CheckoutState {
         deliveryFee,
         total,
         checkout,
-        
       ];
 }

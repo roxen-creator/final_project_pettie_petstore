@@ -11,6 +11,9 @@ class Product extends Equatable {
   final bool isPopular;
   final bool isBestProduct;
 
+  // ignore: prefer_typing_uninitialized_variables
+  static var products;
+
   const Product({
     required this.name,
     required this.category,

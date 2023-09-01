@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../blocs/cart/cart_bloc.dart';
 
-
 import '../widget/app_bar.dart';
 import '../widget/cart_product_card.dart';
 import '../widget/order_summary.dart';
@@ -67,7 +66,7 @@ class Cart extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                               state.cart.freeDeliveryString,
+                              state.cart.freeDeliveryString,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                             ElevatedButton(
@@ -92,20 +91,27 @@ class Cart extends StatelessWidget {
                         SizedBox(
                           height: 500,
                           child: ListView.builder(
-                              itemBuilder: (context, index) {
-                                return CartProductCard(
-                                    product: state.cart.productQuantity(state.cart.products).keys.elementAt(index),
-                                    quantity:state.cart.productQuantity(state.cart.products).values.elementAt(index),
-                                  
-                                    
-                                    );
-                              },
-                              itemCount: state.cart.productQuantity(state.cart.products).keys.length,
-                        ),),
+                            itemBuilder: (context, index) {
+                              return CartProductCard(
+                                product: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .keys
+                                    .elementAt(index),
+                                quantity: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .values
+                                    .elementAt(index),
+                              );
+                            },
+                            itemCount: state.cart
+                                .productQuantity(state.cart.products)
+                                .keys
+                                .length,
+                          ),
+                        ),
                       ],
                     ),
                     const OrderSummary(),
-                  
                   ],
                 ),
               );

@@ -22,11 +22,14 @@ dependencies:
   firebase_auth: ^4.4.2
   line_awesome_flutter: ^2.0.0
   cloud_firestore: ^4.5.3
+  google_sign_in: ^6.1.4
   carousel_slider: ^4.2.1
   equatable: ^2.0.5
   flutter_bloc: ^8.1.2
   bloc:
-
+  flutter_svg: ^1.0.0
+  khalti_flutter: ^2.1.0
+  
  
   
 
@@ -41,7 +44,4 @@ flutter:
   assets:
     - assets/images/
     - assets/images/on_boarding_screen/
-
-   
-
-
+    - assets/svg/
