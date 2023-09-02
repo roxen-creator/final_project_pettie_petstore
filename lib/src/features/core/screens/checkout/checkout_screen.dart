@@ -6,8 +6,6 @@
 // import '../widget/custom_text_form_field.dart';
 // import '../widget/nav_bar.dart';
 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pettie_petstore/src/features/core/screens/widget/custom_text_form_field.dart';
@@ -39,104 +37,114 @@ class CheckoutScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: BlocBuilder<CheckoutBloc, CheckoutState>(
             builder: (context, state) {
-              if(state is CheckoutLoading){
-                return const Center(child: CircularProgressIndicator(),);
+              if (state is CheckoutLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
-      
-              if (state is CheckoutLoaded){
-       return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Customer Infromation',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                 CustomTextFormField(title: 'email',
-                  onChanged: (value){
-                    context.read<CheckoutBloc>().add(UpdateCheckout(email:value));
-                  },),
-      
-                   CustomTextFormField(title: 'Full Name',
-                   
-                    onChanged: (value){
-                    context.read<CheckoutBloc>().add(UpdateCheckout(fullName:value));}
-                   
-                   
-                   ),
-                  Text(
-                    'Delivery Infromation',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                   CustomTextFormField(title: 'Address',
+
+              if (state is CheckoutLoaded) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Customer Infromation',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    CustomTextFormField(
+                      title: 'email',
+                      onChanged: (value) {
+                        context
+                            .read<CheckoutBloc>()
+                            .add(UpdateCheckout(email: value));
+                      },
+                    ),
+                    CustomTextFormField(
+                        title: 'Full Name',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(fullName: value));
+                        }),
+                    Text(
+                      'Delivery Infromation',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    CustomTextFormField(
+                      title: 'Address',
                       onChanged: (value) {
                         context
                             .read<CheckoutBloc>()
                             .add(UpdateCheckout(address: value));
-                      },),
-                  CustomTextFormField(title: 'City',
-                   onChanged: (value) {
+                      },
+                    ),
+                    CustomTextFormField(
+                      title: 'City',
+                      onChanged: (value) {
                         context
                             .read<CheckoutBloc>()
                             .add(UpdateCheckout(city: value));
                       },
-                  
-                  ),
-                  CustomTextFormField(title: 'Country',  onChanged: (value) {
+                    ),
+                    CustomTextFormField(
+                      title: 'Country',
+                      onChanged: (value) {
                         context
                             .read<CheckoutBloc>()
                             .add(UpdateCheckout(country: value));
-                      },),
-                  CustomTextFormField(title: 'Zip Code',   onChanged: (value) {
+                      },
+                    ),
+                    CustomTextFormField(
+                      title: 'Zip Code',
+                      onChanged: (value) {
                         context
                             .read<CheckoutBloc>()
                             .add(UpdateCheckout(zipCode: value));
-                      },),
-                 
-               
-                  Text(
-                    'Order Summmary',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-
-const SizedBox(height: 20,),
-
-Container(
-
-  width: MediaQuery.of(context).size.width,
-  height: 60,
-  alignment:Alignment.bottomCenter,
-  decoration: const BoxDecoration(color: Colors.black),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: [
-      Center(
-        child: Text(
-          'SELECT A PAYMENT METHOD',
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Colors.white),
-
-        ),
-      ),
-      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios,
-      color: Colors.white,))
-    ],
-  ),
-),
-
-const SizedBox(height: 20,),
-
-
-
-                  const OrderSummary(),
-                
-               
-                ],
-              );
-              
-              }else{
+                      },
+                    ),
+                    Text(
+                      'Order Summmary',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      alignment: Alignment.bottomCenter,
+                      decoration: const BoxDecoration(color: Colors.black),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Center(
+                            child: Text(
+                              'SELECT A PAYMENT METHOD',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                              ))
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const OrderSummary(),
+                  ],
+                );
+              } else {
                 return const Text('something went wrong');
               }
-             
             },
           ),
         ),

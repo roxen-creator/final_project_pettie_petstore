@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pettie_petstore/src/features/core/models/product/product_model.dart';
+
 import 'package:pettie_petstore/src/features/core/screens/widget/app_bar.dart';
 import 'package:pettie_petstore/src/features/core/screens/widget/nav_bar.dart';
 import 'package:pettie_petstore/src/features/core/screens/widget/order_summary.dart';
-
-import '../widget/order_summary_product_card.dart';
 
 class OrderConfirmation extends StatelessWidget {
   static const String routeName = '/order-confirmation';
@@ -82,9 +80,6 @@ class OrderConfirmation extends StatelessWidget {
                   shrinkWrap: true,
                   padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    OrderSummaryProductCard(product: Product.products[0],quantity: 2 ,),
-                  ],
                 ),
               ],
             ),
@@ -94,4 +89,3 @@ class OrderConfirmation extends StatelessWidget {
     );
   }
 }
-
