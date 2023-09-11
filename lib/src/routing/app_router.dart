@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pettie_petstore/src/features/core/models/product/product_model.dart';
 import 'package:pettie_petstore/src/features/core/screens/order_confirmation/order_confirmation.dart';
+import 'package:pettie_petstore/src/features/core/screens/payment_selection/payment_selection.dart';
 import '../features/core/models/category_model/category_model.dart';
 import '../features/core/screens/checkout/checkout_screen.dart';
 import '../features/core/screens/screens.dart';
@@ -24,7 +25,8 @@ class AppRouter {
         return CheckoutScreen.route();
       case OrderConfirmation.routeName:
         return OrderConfirmation.route();
-
+      case PaymentSelection.routeName:
+        return PaymentSelection.route();
       default:
         return _errorRoute();
     }

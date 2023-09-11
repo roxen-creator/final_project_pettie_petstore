@@ -110,35 +110,6 @@ class CheckoutScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 60,
-                      alignment: Alignment.bottomCenter,
-                      decoration: const BoxDecoration(color: Colors.black),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Center(
-                            child: Text(
-                              'SELECT A PAYMENT METHOD',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .copyWith(color: Colors.white),
-                            ),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.white,
-                              ))
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     const OrderSummary(),
                   ],
                 );

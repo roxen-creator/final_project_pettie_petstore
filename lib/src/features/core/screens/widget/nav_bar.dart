@@ -192,7 +192,7 @@ class OrderNowNavBar extends StatelessWidget {
                       context
                           .read<CheckoutBloc>()
                           .add(ConfirmCheckout(checkout: state.checkout));
-                      Navigator.pushNamed(context, '/order-confirmation');
+                      Navigator.pushNamed(context, '/payement-selection');
                     },
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.white),

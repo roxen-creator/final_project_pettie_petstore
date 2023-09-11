@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:pettie_petstore/firebase_options.dart';
 import 'package:pettie_petstore/src/blocs/cart/cart_bloc.dart';
 import 'package:pettie_petstore/src/blocs/category/category_bloc.dart';
@@ -58,14 +59,26 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ],
-      child: GetMaterialApp(
-        themeMode: ThemeMode.system,
-        darkTheme: PAppTheme.darkTheme,
-        theme: PAppTheme.lightTheme,
-        debugShowCheckedModeBanner: false,
-        home: const Dashboard(),
-        onGenerateRoute: AppRouter.onGenerateRoute,
-        // initialRoute: CheckoutScreen.routeName,
+      child: KhaltiScope(
+        publicKey: 'test_public_key_cbe253bc58ca494bac14bf54fe700690',
+        enabledDebugging: true,
+        builder: (context, navKey) {
+          return GetMaterialApp(
+            themeMode: ThemeMode.system,
+            darkTheme: PAppTheme.darkTheme,
+            theme: PAppTheme.lightTheme,
+
+            home: const Dashboard(),
+            onGenerateRoute: AppRouter.onGenerateRoute,
+            // initialRoute: CheckoutScreen.routeName,
+            navigatorKey: navKey,
+            supportedLocales: const [
+              Locale('en', 'US'),
+              Locale('ne', 'NP'),
+            ],
+            localizationsDelegates: const [KhaltiLocalizations.delegate],
+          );
+        },
       ),
     );
   }
