@@ -9,10 +9,10 @@ import 'package:pettie_petstore/src/features/core/screens/widget/category_bar.da
 import 'package:pettie_petstore/src/features/core/screens/widget/nav_bar.dart';
 
 import 'package:pettie_petstore/src/features/core/screens/widget/product_carousel.dart';
-import 'package:pettie_petstore/src/features/core/screens/widget/search_bar.dart';
 import 'package:pettie_petstore/src/features/core/screens/widget/section_title.dart';
 
 import '../../../../blocs/product/product_bloc.dart';
+import '../widget/search_box.dart';
 
 
 class Dashboard extends StatelessWidget {

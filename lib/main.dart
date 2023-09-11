@@ -8,6 +8,7 @@ import 'package:pettie_petstore/src/blocs/cart/cart_bloc.dart';
 import 'package:pettie_petstore/src/blocs/category/category_bloc.dart';
 import 'package:pettie_petstore/src/blocs/checkout/checkout_bloc.dart';
 import 'package:pettie_petstore/src/blocs/product/product_bloc.dart';
+import 'package:pettie_petstore/src/blocs/search/search_bloc.dart';
 import 'package:pettie_petstore/src/blocs/wishlist/wishlist_bloc.dart';
 import 'package:pettie_petstore/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:pettie_petstore/src/repository/authentication_repository/authentication_repository.dart';
@@ -52,6 +53,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (_) => ProductBloc(productRepository: ProductRepository())
               ..add(LoadProducts())),
+        BlocProvider(
+          create: (context) => SearchBloc(
+            productBloc: context.read<ProductBloc>(),
+          )..add(LoadSearch()),
+        ),
         BlocProvider(
           create: (context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),
