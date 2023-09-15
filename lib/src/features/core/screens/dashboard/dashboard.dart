@@ -14,7 +14,6 @@ import 'package:pettie_petstore/src/features/core/screens/widget/section_title.d
 import '../../../../blocs/product/product_bloc.dart';
 import '../widget/search_box.dart';
 
-
 class Dashboard extends StatelessWidget {
   static const String routeName = '/';
   static Route route() {
@@ -60,59 +59,69 @@ class Dashboard extends StatelessWidget {
             const SizedBox(
               height: dashBoardPadding,
             ),
+            SectionTitle(txtTheme: txtTheme, title: 'Category'),
             const CategoryBar(),
             SectionTitle(txtTheme: txtTheme, title: 'Best Product'),
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
-                if(state is ProductLoading){
-                  return const Center(child: CircularProgressIndicator(),);
+                if (state is ProductLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
-                if (state is ProductLoaded){
- return ProductCarousel(
-                    products: state.products
-                        .where((product) => product.isBestProduct)
-                        .toList());
+                if (state is ProductLoaded) {
+                  return ProductCarousel(
+                      products: state.products
+                          .where((product) => product.isBestProduct)
+                          .toList());
+                } else {
+                  return const Text('Something went wrong');
                 }
-                else {return const Text('Something went wrong');}
-               
               },
             ),
             SectionTitle(txtTheme: txtTheme, title: 'Recommended'),
-         BlocBuilder<ProductBloc, ProductState>(
+            BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
-                if(state is ProductLoading){
-                  return const Center(child: CircularProgressIndicator(),);
+                if (state is ProductLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
-                if (state is ProductLoaded){
- return ProductCarousel(
-                    products: state.products
-                        .where((product) => product.isRecommended)
-                        .toList());
+                if (state is ProductLoaded) {
+                  return ProductCarousel(
+                      products: state.products
+                          .where((product) => product.isRecommended)
+                          .toList());
+                } else {
+                  return const Text('Something went wrong');
                 }
-                else {return const Text('Something went wrong');}
-               
-              },),
-               SectionTitle(txtTheme: txtTheme, title: 'Popular'),
-                BlocBuilder<ProductBloc, ProductState>(
+              },
+            ),
+            SectionTitle(txtTheme: txtTheme, title: 'Popular'),
+            BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
-                if(state is ProductLoading){
-                  return const Center(child: CircularProgressIndicator(),);
+                if (state is ProductLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
-                if (state is ProductLoaded){
- return ProductCarousel(
-                    products: state.products
-                        .where((product) => product.isPopular)
-                        .toList());
+                if (state is ProductLoaded) {
+                  return ProductCarousel(
+                      products: state.products
+                          .where((product) => product.isPopular)
+                          .toList());
+                } else {
+                  return const Text('Something went wrong');
                 }
-                else {return const Text('Something went wrong');}
-               
-              },),
-           
+              },
+            ),
           ]),
         ),
       ),
 
-      bottomNavigationBar: const NavBar(screen: routeName,),
+      bottomNavigationBar: const NavBar(
+        screen: routeName,
+      ),
     );
   }
 }
