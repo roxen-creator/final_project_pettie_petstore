@@ -61,24 +61,6 @@ class Dashboard extends StatelessWidget {
             ),
             SectionTitle(txtTheme: txtTheme, title: 'Category'),
             const CategoryBar(),
-            SectionTitle(txtTheme: txtTheme, title: 'Best Product'),
-            BlocBuilder<ProductBloc, ProductState>(
-              builder: (context, state) {
-                if (state is ProductLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (state is ProductLoaded) {
-                  return ProductCarousel(
-                      products: state.products
-                          .where((product) => product.isBestProduct)
-                          .toList());
-                } else {
-                  return const Text('Something went wrong');
-                }
-              },
-            ),
             SectionTitle(txtTheme: txtTheme, title: 'Recommended'),
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
