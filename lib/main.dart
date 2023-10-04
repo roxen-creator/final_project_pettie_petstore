@@ -15,8 +15,11 @@ import 'package:pettie_petstore/src/repository/authentication_repository/authent
 import 'package:pettie_petstore/src/repository/category/category_repository.dart';
 import 'package:pettie_petstore/src/routing/app_router.dart';
 import 'package:pettie_petstore/src/utis/theme/theme.dart';
+import 'src/blocs/auth/auth_bloc.dart';
+import 'src/repository/auth_repository/auth_repository.dart';
 import 'src/repository/checkout_repository/checkout_repository.dart';
 import 'src/repository/product/product_repository.dart';
+import 'src/repository/user/user_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,59 +35,79 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => WishlistBloc()
-            ..add(
-              LoadWishlist(),
+    return MaterialApp(
+      title: 'Petttie',
+      home: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(
+            create: (context) => UserRepository(),
+          ),
+          RepositoryProvider(
+            create: (context) => AuthRepository(),
+          ),
+        ],
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => AuthBloc(
+                authRepository: context.read<AuthRepository>(),
+                userRepository: context.read<UserRepository>(),
+              ),
             ),
-        ),
-        BlocProvider(
-          create: (_) => CartBloc()
-            ..add(
-              LoadCart(),
+            BlocProvider(
+              create: (_) => WishlistBloc()
+                ..add(
+                  LoadWishlist(),
+                ),
             ),
-        ),
-        BlocProvider(
-            create: (_) =>
-                CategoryBloc(categoryRepository: CategoryRepository())
-                  ..add(LoadCategories())),
-        BlocProvider(
-            create: (_) => ProductBloc(productRepository: ProductRepository())
-              ..add(LoadProducts())),
-        BlocProvider(
-          create: (context) => SearchBloc(
-            productBloc: context.read<ProductBloc>(),
-          )..add(LoadSearch()),
-        ),
-        BlocProvider(
-          create: (context) => CheckoutBloc(
-            cartBloc: context.read<CartBloc>(),
-            checkoutRepository: CheckoutRepository(),
+            BlocProvider(
+              create: (_) => CartBloc()
+                ..add(
+                  LoadCart(),
+                ),
+            ),
+            BlocProvider(
+                create: (_) =>
+                    CategoryBloc(categoryRepository: CategoryRepository())
+                      ..add(LoadCategories())),
+            BlocProvider(
+                create: (_) =>
+                    ProductBloc(productRepository: ProductRepository())
+                      ..add(LoadProducts())),
+            BlocProvider(
+              create: (context) => SearchBloc(
+                productBloc: context.read<ProductBloc>(),
+              )..add(LoadSearch()),
+            ),
+            BlocProvider(
+              create: (context) => CheckoutBloc(
+                cartBloc: context.read<CartBloc>(),
+                checkoutRepository: CheckoutRepository(),
+              ),
+            ),
+          ],
+          child: KhaltiScope(
+            publicKey: 'test_public_key_cbe253bc58ca494bac14bf54fe700690',
+            enabledDebugging: true,
+            builder: (context, navKey) {
+              return GetMaterialApp(
+                themeMode: ThemeMode.system,
+                darkTheme: PAppTheme.darkTheme,
+                theme: PAppTheme.lightTheme,
+
+                home: const Dashboard(),
+                onGenerateRoute: AppRouter.onGenerateRoute,
+                // initialRoute: CheckoutScreen.routeName,
+                navigatorKey: navKey,
+                supportedLocales: const [
+                  Locale('en', 'US'),
+                  Locale('ne', 'NP'),
+                ],
+                localizationsDelegates: const [KhaltiLocalizations.delegate],
+              );
+            },
           ),
         ),
-      ],
-      child: KhaltiScope(
-        publicKey: 'test_public_key_cbe253bc58ca494bac14bf54fe700690',
-        enabledDebugging: true,
-        builder: (context, navKey) {
-          return GetMaterialApp(
-            themeMode: ThemeMode.system,
-            darkTheme: PAppTheme.darkTheme,
-            theme: PAppTheme.lightTheme,
-
-            home: const Dashboard(),
-            onGenerateRoute: AppRouter.onGenerateRoute,
-            // initialRoute: CheckoutScreen.routeName,
-            navigatorKey: navKey,
-            supportedLocales: const [
-              Locale('en', 'US'),
-              Locale('ne', 'NP'),
-            ],
-            localizationsDelegates: const [KhaltiLocalizations.delegate],
-          );
-        },
       ),
     );
   }

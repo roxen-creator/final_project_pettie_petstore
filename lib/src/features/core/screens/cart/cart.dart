@@ -60,56 +60,58 @@ class Cart extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              state.cart.freeDeliveryString,
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/');
-                              },
-                              child: Text(
-                                'Add More',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall!
-                                    .apply(
-                                        fontSizeFactor: 0.7,
-                                        color: Colors.white),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                state.cart.freeDeliveryString,
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 500,
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              return CartProductCard(
-                                product: state.cart
-                                    .productQuantity(state.cart.products)
-                                    .keys
-                                    .elementAt(index),
-                                quantity: state.cart
-                                    .productQuantity(state.cart.products)
-                                    .values
-                                    .elementAt(index),
-                              );
-                            },
-                            itemCount: state.cart
-                                .productQuantity(state.cart.products)
-                                .keys
-                                .length,
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/');
+                                },
+                                child: Text(
+                                  'Add More',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall!
+                                      .apply(
+                                          fontSizeFactor: 0.7,
+                                          color: Colors.white),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            height: 500,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return CartProductCard(
+                                  product: state.cart
+                                      .productQuantity(state.cart.products)
+                                      .keys
+                                      .elementAt(index),
+                                  quantity: state.cart
+                                      .productQuantity(state.cart.products)
+                                      .values
+                                      .elementAt(index),
+                                );
+                              },
+                              itemCount: state.cart
+                                  .productQuantity(state.cart.products)
+                                  .keys
+                                  .length,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const OrderSummary(),
                   ],

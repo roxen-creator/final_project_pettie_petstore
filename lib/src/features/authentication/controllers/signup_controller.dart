@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pettie_petstore/src/features/authentication/screens/forgot_password/forgot_password_otp/otp_screen.dart';
 import 'package:pettie_petstore/src/repository/authentication_repository/authentication_repository.dart';
-import 'package:pettie_petstore/src/repository/user_repository.dart/user_repository.dart';
 
+
+import '../../../repository/user_repository/user_repository.dart';
 import '../models/user_model.dart';
 
 class SignUpController extends GetxController {
